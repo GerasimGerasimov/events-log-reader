@@ -1,5 +1,5 @@
 import TDAO from "./DAO";
-import { IEvent } from "./EventsSourceToMap";
+import { IEvent } from "./iEvents";
 
 export default class EventsRepositoty {
   private dao: TDAO;

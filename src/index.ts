@@ -1,5 +1,4 @@
 console.log('event-log-reader started');
-import { EventsMap, IEvent} from './EventsSourceToMap';
 import TDAO  from './DAO';
 import EventsRepositoty from './EventsRepository';
 
@@ -7,6 +6,29 @@ import EventsRepositoty from './EventsRepository';
 async function main(){
   const dao: TDAO = new TDAO('./db/database.sqlite3');
   const eventsRepo = new EventsRepositoty(dao);
+}
+
+main()
+console.log('stop')
+
+/*
+const express = require("express")
+const app = express()
+
+app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    next();
+});
+
+app.use(express.static(__dirname + '/dist'));
+
+console.log('server started at 4000')
+app.listen(4000)
+*/
+
+/*
   try {
 
     console.log('start to create table')
@@ -23,6 +45,7 @@ async function main(){
 
     console.log('start to create records')
 
+  
     await dao.run('BEGIN TRANSACTION');
     var index:number = 0;
     for await (let i of asyncGenerator(2048)) {
@@ -46,12 +69,7 @@ async function main(){
           await eventsRepo.create(event)
           console.log(`create record: ${i} ${type} ${tag}`)
           
-          /*index++;
-          if (index === 100) {
-            index = 0;
-            await dao.run('COMMIT TRANSACTION');
-          }
-          */
+
         } else {
           console.log(`Error on record ${i}`)
         }
@@ -64,24 +82,4 @@ async function main(){
     console.log('end row count:', await eventsRepo.getRowCount())
     console.log('event-log-sqlite stoped');
 
-}
-
-main()
-console.log('stop')
-
-/*
-const express = require("express")
-const app = express()
-
-app.all('*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    next();
-});
-
-app.use(express.static(__dirname + '/dist'));
-
-console.log('server started at 4000')
-app.listen(4000)
 */
