@@ -7,6 +7,7 @@
     {
       "type": "node",
       "request": "launch",
+      "args": ["./config.json"],
       "name": "Запустить программу",
       "preLaunchTask": "npm: build",
       "skipFiles": [

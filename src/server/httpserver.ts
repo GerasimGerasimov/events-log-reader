@@ -22,19 +22,34 @@ export class HttpServer{
             res.header('Access-Control-Allow-Headers', 'Content-Type');
             next();
         });
+
+        app.route('/v1/data/:id')
+            .get(jsonParser, [this.get.bind(this)])
+        
         app.route('/v1/data/')
             .put(jsonParser, [this.put.bind(this)]);
-            
+        
         this.https = http.createServer(app).listen(this.port);
+        console.log('events-log-reader server started at port: ', this.port);
     }
 
-    private async put (request: any, response: any) {
-        console.log(`/v1/data/PUT> ${request.body.cmd || ''}`);
+    private async get (request: any, response: any) {
+        console.log(`/v1/data/> ${request.params.id || ''}`);
             try {
-                return 'PUT' //response.json(await this.com.getCOMAnswer(request.body));
+                response.json('apply GET') //response.json(await this.com.getCOMAnswer(request.body));
             } catch (e) {
                 response.status(400).json({status:'Error',
                                            msg: e.message || ''})
             }
     }
+
+    private async put (request: any, response: any) {
+        console.log(`/v1/data/> ${request.body.cmd || ''}`);
+            try {
+                response.json('apply PUT')  //response.json(await this.com.getCOMAnswer(request.body));
+            } catch (e) {
+                response.status(400).json({status:'Error',
+                                           msg: e.message || ''})
+            }
+    }    
 }
