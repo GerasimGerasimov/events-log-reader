@@ -15,7 +15,6 @@ const DBReader = new TDBReader();
     console.log('end row count:', await DBReader.getRowCount());
     console.log('dates:', await DBReader.getUniqDataList());
     const date = '2021-02-18';
-    /*TODO не работает getRowsByDate rows: undefined*/
     console.log('rows:', await DBReader.getRowsByDate(date));
     console.log('End of transaction')
   } catch (e) {
