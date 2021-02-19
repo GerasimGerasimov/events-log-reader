@@ -12,7 +12,10 @@ const DBReader = new TDBReader();
 (async () => {
   try {
     console.log('end row count:', await DBReader.getRowCount());
+    console.log('max utime:', await DBReader.getMaxUTime());
+    console.log('min utime:', await DBReader.getMinUTime());
   } catch (e) {
     console.log(e)
   }
+  console.log('event-log-reader stopped');
 })()
