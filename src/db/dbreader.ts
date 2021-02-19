@@ -42,6 +42,14 @@ export class TDBReader {
     }
   }
 
+  public async getUniqDataList(): Promise<any>{
+    return await this.eventsRepo.getUniqDataList()
+  }
+
+  public async getRowsByDate(date: string): Promise<any>{
+    return await this.eventsRepo.getRowsByDate(date)
+  }
+
   public async beginTransaction(){
     await this.dao.run('BEGIN TRANSACTION');
   }

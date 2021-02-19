@@ -49,7 +49,24 @@ export default class EventsRepositoty {
       `SELECT *, min(utime) FROM events`
     )
   }
+
+  public async getUniqDataList(): Promise<any> {
+    return await this.dao.get(
+      `SELECT DISTINCT date(datetime(utime/1000, 'unixepoch','localtime')) AS dates
+      FROM events
+      ORDER BY utime`
+    )
+  }
+
+  public async getRowsByDate(date: string): Promise<any> {
+    return await this.dao.get(
+      `SELECT *
+      FROM events
+      WHERE date(datetime(utime/1000, 'unixepoch','localtime')) = ${date}`
+    )
+  }
 }
+
 
   /*
   public update(id: number, date: string, details: string) {

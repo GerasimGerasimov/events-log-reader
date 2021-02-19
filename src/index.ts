@@ -11,11 +11,13 @@ const DBReader = new TDBReader();
 
 (async () => {
   try {
-    await DBReader.beginTransaction();
+    console.log('beginTransaction');
     console.log('end row count:', await DBReader.getRowCount());
-    console.log('max utime:', await DBReader.getMaxUTimeRow());
-    console.log('min utime:', await DBReader.getMinUTimeRow());
-    await DBReader.commitTransaction();
+    console.log('dates:', await DBReader.getUniqDataList());
+    const date = '2021-02-18';
+    /*TODO не работает getRowsByDate rows: undefined*/
+    console.log('rows:', await DBReader.getRowsByDate(date));
+    console.log('End of transaction')
   } catch (e) {
     console.log(e)
   }
