@@ -62,7 +62,7 @@ export default class EventsRepositoty {
     return await this.dao.get(
       `SELECT *
       FROM events
-      WHERE date(datetime(utime/1000, 'unixepoch','localtime')) = ${date}`
+      WHERE date(datetime(utime/1000, 'unixepoch','localtime')) = '${date}'`
     )
   }
 }
