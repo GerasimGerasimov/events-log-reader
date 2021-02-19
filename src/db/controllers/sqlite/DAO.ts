@@ -36,22 +36,23 @@ export default class TDAO {
           console.log(err);
           reject(err);
         } else {
-          //console.log(result);
           resolve(result);
         }
       })
     })
-
   }
 
-  public all(sql: string, params: Array<any> = []): any {
-    this.db.all(sql, params, (err, rows)=>{
-      if (err) {
-        console.log('Error running sql: '+ sql);
-        console.log(err);
-      } else {
-        return rows;
-      }
+  public all(sql: string, params: Array<any> = []): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.db.all(sql, params, (err, rows) => {
+        if (err) {
+          console.log('Error running sql: '+ sql);
+          console.log(err);
+          reject(err);
+        } else {
+          resolve(rows);
+        }
+      })
     })
   }
 }

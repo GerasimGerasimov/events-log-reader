@@ -13,6 +13,7 @@ const DBReader = new TDBReader();
   try {
     console.log('beginTransaction');
     console.log('end row count:', await DBReader.getRowCount());
+    /*TODO получить именно список дат и пройтись по нему в асинхронном цикле для получения строк */
     console.log('dates:', await DBReader.getUniqDataList());
     const date = '2021-02-18';
     console.log('rows:', await DBReader.getRowsByDate(date));
