@@ -38,13 +38,13 @@ export default class EventsRepositoty {
     )
   }
 
-  public async getMaxUTime(): Promise<number> {
+  public async getMaxUTimeRow(): Promise<string> {
     return await this.dao.get(
       `SELECT *, max(utime) FROM events`
     )
   }
 
-  public async getMinUTime(): Promise<number> {
+  public async getMinUTimeRow(): Promise<string> {
     return await this.dao.get(
       `SELECT *, min(utime) FROM events`
     )

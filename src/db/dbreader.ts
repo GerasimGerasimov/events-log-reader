@@ -42,16 +42,24 @@ export class TDBReader {
     }
   }
 
+  public async beginTransaction(){
+    await this.dao.run('BEGIN TRANSACTION');
+  }
+
+  public async commitTransaction(){
+    await this.dao.run('COMMIT TRANSACTION');
+  }
+
   public async getRowCount(): Promise<number> {
     return await this.eventsRepo.getRowCount()
   }
 
-  public async getMaxUTime(): Promise<number> {
-    return await this.eventsRepo.getMaxUTime()
+  public async getMaxUTimeRow(): Promise<string> {
+    return await this.eventsRepo.getMaxUTimeRow()
   }
 
-  public async getMinUTime(): Promise<number> {
-    return await this.eventsRepo.getMinUTime()
+  public async getMinUTimeRow(): Promise<string> {
+    return await this.eventsRepo.getMinUTimeRow()
   }
 
   private get isConnected(): boolean {
