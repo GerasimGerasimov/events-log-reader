@@ -1,8 +1,9 @@
 import { IEvent } from "./iDBEvent";
 import TDAO from "./controllers/sqlite/DAO";
 import EventsRepositoty from "./controllers/sqlite/EventsRepository";
+import { iDB } from "./idb";
 
-export class TDBReader {
+export class TDBReader implements iDB {
   
   private dao: TDAO;
   private eventsRepo: EventsRepositoty;
