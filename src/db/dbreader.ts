@@ -43,8 +43,17 @@ export class TDBReader implements iDB {
     }
   }
 
-  public async getUniqDataList(): Promise<any>{
-    return await this.eventsRepo.getUniqDataList()
+  public async getUniqDataList(): Promise<any> {
+    const res : Array<string> = [];
+    const dates =  await this.eventsRepo.getUniqDataList();
+    dates.forEach((items: any) => {
+      const values: Array<any> = Object.values(items);
+      const data: string = values[0] || '';
+      if (data) {
+        res.push(data)
+      }
+    });
+    return res;
   }
 
   public async getRowsByDate(date: string): Promise<any>{
