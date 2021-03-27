@@ -2,6 +2,7 @@ import { IEvent } from "./iDBEvent";
 import TDAO from "./controllers/sqlite/DAO";
 import EventsRepositoty from "./controllers/sqlite/EventsRepository";
 import { iDB } from "./idb";
+import { delay } from "../helpers/utils";
 
 export class TDBReader implements iDB {
   
@@ -57,7 +58,8 @@ export class TDBReader implements iDB {
   }
 
   public async getRowsByDate(date: string): Promise<any>{
-    return await this.eventsRepo.getRowsByDate(date)
+    await delay(2000);//имитация тормозов
+    return await this.eventsRepo.getRowsByDate(date);
   }
 
   public async beginTransaction(){

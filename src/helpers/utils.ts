@@ -8,3 +8,9 @@ export function getConfigFile (): string {
     console.log(`filename: ${filename}`);//
     return filename;
 }
+
+export async function delay(ms: number): Promise<any> {
+    return new Promise((resolve, reject) => {
+      setTimeout(resolve, ms);
+    });
+  }
