@@ -1,5 +1,6 @@
 {
     "HOST":{
         "port": 5008
-    }
+    },
+    "path":"../db/database.sqlite3"
 }

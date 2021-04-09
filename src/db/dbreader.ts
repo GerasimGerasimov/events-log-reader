@@ -10,8 +10,8 @@ export class TDBReader implements iDB {
   private eventsRepo: EventsRepositoty;
   private connected: boolean = false;
 
-  constructor() {
-    this.dao = new TDAO('./db/database.sqlite3');
+  constructor(path: string) {
+    this.dao = new TDAO(path);
     this.eventsRepo = new EventsRepositoty(this.dao);
   }
 
@@ -45,6 +45,7 @@ export class TDBReader implements iDB {
   }
 
   public async getUniqDataList(): Promise<any> {
+    await delay(1000);//имитация тормозов
     const res : Array<string> = [];
     const dates =  await this.eventsRepo.getUniqDataList();
     dates.forEach((items: any) => {
@@ -58,11 +59,11 @@ export class TDBReader implements iDB {
   }
 
   public async getRowsByDate(date: string): Promise<any>{
-    await delay(2000);//имитация тормозов
+    await delay(0);//имитация тормозов
     return await this.eventsRepo.getRowsByDate(date);
   }
 
-  public async beginTransaction(){
+  public async beginTransaction() {
     await this.dao.run('BEGIN TRANSACTION');
   }
 
