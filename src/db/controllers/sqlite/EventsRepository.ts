@@ -54,7 +54,7 @@ export default class EventsRepositoty {
     return await this.dao.all(
       `SELECT DISTINCT date(datetime(utime/1000, 'unixepoch','localtime')) AS dates
       FROM events
-      ORDER BY utime`
+      ORDER BY utime DESC`
     )
   }
 
