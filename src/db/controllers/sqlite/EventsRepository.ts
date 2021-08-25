@@ -66,21 +66,3 @@ export default class EventsRepositoty {
     )
   }
 }
-
-
-  /*
-  public update(id: number, date: string, details: string) {
-    return this.dao.run(
-      'UPDATE events SET date = ?, details = ? WHERE id = ?',
-      [date, details, id]
-    )
-  }
-  */
- /*
-  public delete(id: number) {
-    return this.dao.run(
-      'DELETE FROM events WHERE id = ?',
-      [id]
-    )
-  }
-  */

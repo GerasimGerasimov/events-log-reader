@@ -2,13 +2,16 @@ import sqlite3 = require('sqlite3')
 
 export default class TDAO {
   private db: sqlite3.Database;
+  private connected: boolean = false;
   
   constructor(dbFilePath: string) {
     this.db = new sqlite3.Database(dbFilePath, (err) => {
       if (err) {
-        console.log('Could not connect to database', err)
+        console.log('Could not connect to database', err);
+        this.connected = false;
       } else {
-        console.log('Connect to database')
+        console.log('Connect to database');
+        this.connected = true;
       }
     })
   }
@@ -54,5 +57,9 @@ export default class TDAO {
         }
       })
     })
+  }
+
+  public get isConnected(): boolean {
+    return this.connected;
   }
 }
