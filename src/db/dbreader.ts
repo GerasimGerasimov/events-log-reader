@@ -1,8 +1,7 @@
-import { IEvent } from "./iDBEvent";
 import TDAO from "./controllers/sqlite/DAO";
 import EventsRepositoty from "./controllers/sqlite/EventsRepository";
 import { iDB } from "./idb";
-import { delay } from "../helpers/utils";
+//import { delay } from "../helpers/utils";
 
 export class TDBReader implements iDB {
   

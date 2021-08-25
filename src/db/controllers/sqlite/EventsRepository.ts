@@ -9,22 +9,6 @@ export default class EventsRepositoty {
     this.dao = dao;
   }
 
-  public createTable() {
-    const sql = `
-    CREATE TABLE IF NOT EXISTS events (
-      ${EventScheme})`
-    return this.dao.run(sql)
-  }
-
-  public create(event: IEvent) {
-    const {utime, date, type, trig, tag, details} = {... event}
-    const detailsJSON: string = JSON.stringify(details)
-    return this.dao.run(
-      'INSERT INTO events (utime, date, type, trig, tag, details) VALUES (?, ?, ?, ?, ?, ?)',
-      [utime, date, type, trig, tag, detailsJSON]
-    )
-  }
-
   public async getByID(id: any): Promise<any> {
     return await this.dao.get(
       `SELECT * FROM events WHERE id = ?`,
